@@ -10,7 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<INoteRepository, NoteRepository>();
@@ -30,15 +29,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-//Add CORS BEFORE builder.Build()
+// Add CORS policy to allow localhost (dev) and your deployed frontend on Vercel
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173")
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
+            policy.WithOrigins(
+                "http://localhost:5173",                       // Vue dev server
+                "https://notes-application-amber.vercel.app"  // deployed frontend
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
         });
 });
 
@@ -53,7 +56,7 @@ builder.Services.AddSwaggerGen(c =>
         Scheme = "bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Enter 'Bearer' [space] and then your valid token in the text input below.\r\n\r\nExample: \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\""
+        Description = "Enter 'Bearer' [space] and then your valid token.\r\n\r\nExample: \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\""
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -73,12 +76,11 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
-//var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-//app.Urls.Add($"http://*:{port}");
-// Use CORS Middleware
+
+// Enable CORS
 app.UseCors("AllowFrontend");
 
-// Use Swagger only in development
+// Enable Swagger only in Development environment
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
