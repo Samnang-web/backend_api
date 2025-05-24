@@ -69,16 +69,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 // 5. Configure CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend", policy =>
+    builder.Services.AddCors(options => options.AddPolicy("AllowFrontend", builder =>
     {
-        policy.WithOrigins("http://localhost:5173")
-        .AllowAnyHeader().AllowAnyMethod();
-        policy.WithOrigins("https://notes-application-4wwi8ovu5-samnang-webs-projects.vercel.app")
-        .AllowAnyHeader().AllowAnyMethod();
-        policy.WithOrigins("https://notes-application-amber.vercel.app")
-        .AllowAnyHeader().AllowAnyMethod();
-    });
+        builder.WithOrigins("http://localhost:5173").AllowAnyMethod().AllowAnyHeader();
+        builder.WithOrigins("https://notes-application-amber.vercel.app").AllowAnyMethod().AllowAnyHeader();
+    }));
 });
+
 
 var app = builder.Build();
 
