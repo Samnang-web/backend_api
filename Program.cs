@@ -36,12 +36,12 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins(
-                "http://localhost:5173",                       // Vue dev server
-                "https://notes-application-amber.vercel.app"  // deployed frontend
+                    "http://localhost:5173",
+                    "https://notes-application-amber.vercel.app"
             )
             .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
+            .AllowAnyMethod();
+            
         });
 });
 
