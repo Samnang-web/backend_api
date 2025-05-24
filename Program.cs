@@ -70,7 +70,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
             "http://localhost:5173",
-            "https://notes-application-amber.vercel.app"
+            "https://notes-application-amber.vercel.app",
+            "https://notes-application-4wwi8ovu5-samnang-webs-projects.vercel.app"
         )
         .AllowAnyHeader()
         .AllowAnyMethod()
