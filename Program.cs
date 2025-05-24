@@ -69,19 +69,23 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 // 5. Configure CORS
 builder.Services.AddCors(options =>
 {
-    builder.Services.AddCors(options => options.AddPolicy("AllowFrontend", builder =>
+    options.AddPolicy("AllowFrontend", policy =>
     {
-        builder.WithOrigins("http://localhost:5173").AllowAnyMethod().AllowAnyHeader();
-        builder.WithOrigins("https://notes-application-amber.vercel.app").AllowAnyMethod().AllowAnyHeader();
-    }));
+        policy.WithOrigins(
+            "http://localhost:5173",
+            "https://notes-application-amber.vercel.app"
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
 });
 
 
 var app = builder.Build();
 
 // 6. Set hosting port
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Urls.Add($"http://*:{port}");
+//var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+//app.Urls.Add($"http://*:{port}");
 
 // 7. Middleware order is important
 app.UseCors("AllowFrontend"); //  Must come before auth
