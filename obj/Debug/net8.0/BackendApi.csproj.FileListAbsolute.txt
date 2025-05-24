@@ -73,4 +73,3 @@ D:\NotedApp\BackendApi\BackendApi\obj\Debug\net8.0\refint\BackendApi.dll
 D:\NotedApp\BackendApi\BackendApi\obj\Debug\net8.0\BackendApi.pdb
 D:\NotedApp\BackendApi\BackendApi\obj\Debug\net8.0\BackendApi.genruntimeconfig.cache
 D:\NotedApp\BackendApi\BackendApi\obj\Debug\net8.0\ref\BackendApi.dll
-D:\NotedApp\BackendApi\BackendApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

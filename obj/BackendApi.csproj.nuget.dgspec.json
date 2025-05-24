@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\NotedApp\\BackendApi\\BackendApi\\BackendApi.csproj": {}
+    "D:\\NotedApp\\BackendApi\\backendapi\\BackendApi.csproj": {}
   },
   "projects": {
-    "D:\\NotedApp\\BackendApi\\BackendApi\\BackendApi.csproj": {
+    "D:\\NotedApp\\BackendApi\\backendapi\\BackendApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\NotedApp\\BackendApi\\BackendApi\\BackendApi.csproj",
+        "projectUniqueName": "D:\\NotedApp\\BackendApi\\backendapi\\BackendApi.csproj",
         "projectName": "BackendApi",
-        "projectPath": "D:\\NotedApp\\BackendApi\\BackendApi\\BackendApi.csproj",
+        "projectPath": "D:\\NotedApp\\BackendApi\\backendapi\\BackendApi.csproj",
         "packagesPath": "C:\\Users\\Ah Poch\\.nuget\\packages\\",
-        "outputPath": "D:\\NotedApp\\BackendApi\\BackendApi\\obj\\",
+        "outputPath": "D:\\NotedApp\\BackendApi\\backendapi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
