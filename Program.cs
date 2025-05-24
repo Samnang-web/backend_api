@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<INoteRepository, NoteRepository>();
@@ -29,19 +30,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// Add CORS policy to allow localhost (dev) and your deployed frontend on Vercel
+// Add CORS BEFORE builder.Build()
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
         policy =>
         {
             policy.WithOrigins(
-                    "http://localhost:5173",
-                    "https://notes-application-amber.vercel.app"
+                "http://localhost:5173",
+                "https://notes-application-amber.vercel.app"
             )
             .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();  
+            .AllowAnyMethod();
         });
 });
 
@@ -56,7 +56,7 @@ builder.Services.AddSwaggerGen(c =>
         Scheme = "bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Enter 'Bearer' [space] and then your valid token.\r\n\r\nExample: \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\""
+        Description = "Enter 'Bearer' [space] and then your valid token in the text input below.\r\n\r\nExample: \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\""
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -76,11 +76,12 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
-
-// Enable CORS
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://*:{port}");
+// Use CORS Middleware
 app.UseCors("AllowFrontend");
 
-// Enable Swagger only in Development environment
+// Use Swagger only in development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
