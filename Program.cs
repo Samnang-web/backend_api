@@ -40,8 +40,8 @@ builder.Services.AddCors(options =>
                     "https://notes-application-amber.vercel.app"
             )
             .AllowAnyHeader()
-            .AllowAnyMethod();
-            
+            .AllowAnyMethod()
+            .AllowCredentials();  
         });
 });
 
