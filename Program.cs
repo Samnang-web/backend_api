@@ -1,9 +1,12 @@
+using Backend.Models;
 using Backend.Repository;
 using Backend.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -71,6 +74,8 @@ builder.Services.AddCors(options =>
         policy.WithOrigins("http://localhost:5173")
         .AllowAnyHeader().AllowAnyMethod();
         policy.WithOrigins("https://notes-application-4wwi8ovu5-samnang-webs-projects.vercel.app")
+        .AllowAnyHeader().AllowAnyMethod();
+        policy.WithOrigins("https://notes-application-amber.vercel.app")
         .AllowAnyHeader().AllowAnyMethod();
     });
 });
