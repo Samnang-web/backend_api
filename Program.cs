@@ -68,14 +68,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins(
-            "http://localhost:5173",
-            "https://notes-application-amber.vercel.app",
-            "https://notes-application-4wwi8ovu5-samnang-webs-projects.vercel.app"
-        )
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowCredentials(); // Optional: if using cookies/token in request
+        policy.WithOrigins("http://localhost:5173")
+        .AllowAnyHeader().AllowAnyMethod();
+        policy.WithOrigins("https://notes-application-4wwi8ovu5-samnang-webs-projects.vercel.app")
+        .AllowAnyHeader().AllowAnyMethod();
     });
 });
 
