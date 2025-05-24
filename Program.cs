@@ -38,6 +38,8 @@ builder.Services.AddCors(options =>
         {
             policy.WithOrigins(
                 "http://localhost:5173",
+                "https://notes-application-samnang-webs-projects.vercel.app",
+                "https://notes-application-git-main-samnang-webs-projects.vercel.app",
                 "https://notes-application-amber.vercel.app"
             )
             .AllowAnyHeader()
