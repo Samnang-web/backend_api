@@ -72,11 +72,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend", policy =>
     {
         policy.WithOrigins(
-            "http://localhost:5173", 
-            "https://notes-application-amber.vercel.app",
-            "https://notes-application-git-main-samnang-webs-projects.vercel.app", 
-            "https://notes-application-4wwi8ovu5-samnang-webs-projects.vercel.app",
-            "https://notes-application-samnang-webs-projects.vercel.app"
+            "http://localhost:5173",
+            "https://notes-application-amber.vercel.app"
         )
         .AllowAnyHeader()
         .AllowAnyMethod();
@@ -101,7 +98,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
