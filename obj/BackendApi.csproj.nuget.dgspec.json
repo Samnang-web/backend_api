@@ -62,9 +62,9 @@
               "target": "Package",
               "version": "[8.0.15, )"
             },
-            "Microsoft.Data.SqlClient": {
+            "Npgsql": {
               "target": "Package",
-              "version": "[5.2.2, )"
+              "version": "[8.0.7, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

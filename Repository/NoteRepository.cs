@@ -1,6 +1,6 @@
 ﻿using Backend.Models;
 using Dapper;
-using Microsoft.Data.SqlClient;
+using Npgsql;
 
 namespace Backend.Repository
 {
@@ -46,9 +46,9 @@ namespace Backend.Repository
             return notes;
         }
 
-        private SqlConnection GetConnection()
+        private NpgsqlConnection GetConnection()
         {
-            return new SqlConnection(_conn.GetConnectionString("DBConnection"));
+            return new NpgsqlConnection(_conn.GetConnectionString("DBConnection"));
         }
     }
 }
